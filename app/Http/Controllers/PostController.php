@@ -14,6 +14,7 @@ class PostController extends Controller
     {
         $posts = Post::latest()
             ->select([
+                'id',
                 'title',
                 'body',
                 'created_at'
@@ -53,7 +54,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return inertia('Show', [
+            'post' => $post
+        ]);
     }
 
     /**

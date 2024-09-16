@@ -1,7 +1,9 @@
 import { useForm } from "@inertiajs/react";
 import React from "react";
+import { useRoute } from "ziggy-js";
 
 export default function Create() {
+    const route = useRoute();
     const { data, setData, post, errors, processing } = useForm({
         title: "",
         body: "",
@@ -9,10 +11,8 @@ export default function Create() {
 
     function submit(e) {
         e.preventDefault();
-        post("/posts");
+        post(route("posts.store"));
     }
-
-    console.log(errors);
 
     return (
         <div>
