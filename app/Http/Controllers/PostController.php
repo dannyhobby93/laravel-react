@@ -19,7 +19,7 @@ class PostController extends Controller
                 'body',
                 'created_at'
             ])
-            ->paginate(5);
+            ->paginate(10);
 
         return inertia('Home', [
             'posts' => $posts,
@@ -64,7 +64,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return inertia('Edit', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -72,7 +74,14 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:3|max:30',
+            'body' => 'required|min:10',
+        ]);
+
+        $post->update($request->all());
+
+        return redirect()->route('home')->with('message', 'Post updated successfully');
     }
 
     /**
@@ -80,6 +89,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('home')->with('message', 'Post deleted successfully');
     }
 }
