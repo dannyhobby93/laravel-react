@@ -9,7 +9,7 @@ export default function Layout({ children }) {
                     <Link href="/" className="nav-link">
                         Home
                     </Link>
-                    <Link href="/create" className="nav-link">
+                    <Link href="/posts/create" className="nav-link">
                         Create
                     </Link>
                 </nav>

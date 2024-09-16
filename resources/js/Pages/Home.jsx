@@ -1,14 +1,20 @@
-import { Link } from "@inertiajs/react";
 import React from "react";
+import Pagination from "../Components/Pagination";
 
-export default function Home() {
+export default function Home({ posts }) {
     return (
-        <div>
+        <>
             <h1 className="title">Hello User</h1>
-
-            <Link preserveScroll href="/" className="title block mt-[1000px]">
-                {new Date().toLocaleTimeString()}
-            </Link>
-        </div>
+            {posts.data.map((post, index) => (
+                <div key={index}>
+                    <p>{post.title}</p>
+                    <span className="text-sm text-gray-400">
+                        Posted @{" "}
+                        {new Date(post.created_at).toLocaleTimeString()}
+                    </span>
+                </div>
+            ))}
+            <Pagination links={posts.links} />
+        </>
     );
 }
