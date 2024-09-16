@@ -30,7 +30,7 @@ export default function Show({ post }) {
                     </form>
                     <div className="ml-1">
                         <Link
-                            href={route("posts.edit", post.id)}
+                            href={route("posts.edit", post)}
                             className="primary-btn bg-blue-500 hover:bg-blue-400"
                         >
                             Edit
